@@ -1,0 +1,12 @@
+﻿{
+  "name": "cad-fea-stress-analyzer",
+  "version": "1.0.0",
+  "description": "2D/3D Finite Element Analysis (FEA) and Structural Stress Simulation Tool for Mechanical & Civil Engineering",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve ."
+  },
+  "keywords": ["fea", "finite-element-analysis", "mechanical-engineering", "stress-analysis", "von-mises", "structural-analysis"],
+  "author": "Rushikesh Garad",
+  "license": "MIT"
+}

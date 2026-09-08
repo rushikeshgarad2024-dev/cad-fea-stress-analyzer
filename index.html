@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CAD & FEA Structural Stress Analyzer | Mechanical Engineering</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <header>
+      <div class="header-content">
+        <h1>⚙️ CAD & FEA Structural Stress Analyzer</h1>
+        <p>Interactive Finite Element Analysis, Von Mises Stress Heatmap & Structural Deformation Solver</p>
+      </div>
+      <div class="author-badge">Engineering Simulation Suite • Rushikesh Garad</div>
+    </header>
+
+    <div class="main-layout">
+      <div class="control-panel">
+        <h3>Structural Parameters</h3>
+        <div class="form-group">
+          <label>Structure Preset:</label>
+          <select id="structurePreset">
+            <option value="warren">Warren Truss Bridge (5 Nodes, 7 Members)</option>
+            <option value="pratt">Pratt Truss (6 Nodes, 9 Members)</option>
+            <option value="cantilever">Cantilever Beam Truss (4 Nodes, 5 Members)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Material:</label>
+          <select id="materialSelect">
+            <option value="steel">Structural Steel (E = 200 GPa, Yield = 250 MPa)</option>
+            <option value="aluminum">Aluminum 6061-T6 (E = 69 GPa, Yield = 276 MPa)</option>
+            <option value="titanium">Titanium Ti-6Al-4V (E = 114 GPa, Yield = 880 MPa)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Applied Load (kN): <span id="loadVal">50</span></label>
+          <input type="range" id="loadRange" min="10" max="200" value="50" step="5" />
+        </div>
+        <div class="form-group">
+          <label>Cross-Section Area (cm²): <span id="areaVal">20</span></label>
+          <input type="range" id="areaRange" min="5" max="100" value="20" step="1" />
+        </div>
+        <div class="form-group">
+          <label>Deformation Scale Multiplier: <span id="scaleVal">200x</span></label>
+          <input type="range" id="scaleRange" min="50" max="1000" value="200" step="50" />
+        </div>
+
+        <button id="runFeaBtn" class="btn-primary">⚡ Compute FEA Solution</button>
+
+        <div class="results-card">
+          <h4>📊 FEA Simulation Results</h4>
+          <div class="stat-row"><span>Max Von Mises Stress:</span> <strong id="maxStress">42.5 MPa</strong></div>
+          <div class="stat-row"><span>Max Nodal Deflection:</span> <strong id="maxDeflection">0.86 mm</strong></div>
+          <div class="stat-row"><span>Factor of Safety (FoS):</span> <strong id="fos" class="text-safe">5.88</strong></div>
+          <div class="stat-row"><span>Structural Status:</span> <span id="statusBadge" class="badge-safe">SAFE</span></div>
+        </div>
+      </div>
+
+      <div class="viewport-panel">
+        <div class="canvas-header">
+          <span>Deformed vs Undeformed Mesh Visualization (Direct Stiffness Method)</span>
+          <div class="legend">
+            <span class="legend-box tension"></span> Tension (+)
+            <span class="legend-box compression"></span> Compression (-)
+            <span class="legend-box neutral"></span> Undeformed
+          </div>
+        </div>
+        <canvas id="feaCanvas" width="900" height="520"></canvas>
+      </div>
+    </div>
+  </div>
+  <script src="solver.js"></script>
+</body>
+</html>
